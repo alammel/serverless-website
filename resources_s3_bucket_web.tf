@@ -43,7 +43,7 @@ data "aws_iam_policy_document" "web-bucket" {
     sid = "AllowReadonlyObjectAccess"
 
     actions = [
-      "s3:ListObjetc",
+      "s3:ListObject",
       "s3:GetObject",
     ]
 
@@ -56,14 +56,14 @@ data "aws_iam_policy_document" "web-bucket" {
       type = "AWS"
 
       identifiers = [
-        "${aws_iam_group.development.arn}",
+        "${aws_iam_user.development.arn}",
         "${aws_cloudfront_origin_access_identity.web.iam_arn}",
       ]
     }
   }
 
   statement {
-    sid = "AllowListBuckmet"
+    sid = "AllowListBucket"
 
     actions = [
       "s3:ListBucket",
@@ -77,7 +77,7 @@ data "aws_iam_policy_document" "web-bucket" {
       type = "AWS"
 
       identifiers = [
-        "${aws_iam_group.development.arn}",
+        "${aws_iam_user.development.arn}",
         "${aws_cloudfront_origin_access_identity.web.iam_arn}",
       ]
     }

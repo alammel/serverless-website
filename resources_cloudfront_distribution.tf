@@ -36,14 +36,13 @@ resource "aws_cloudfront_distribution" "web" {
 
   logging_config {
     include_cookies = false
-    bucket          = "${local.name_short}-logging"
+    bucket          = "${aws_s3_bucket.logging-bucket.id}"
     prefix          = "blog"
   }
 
   restrictions {
     geo_restriction {
-      restriction_type = "blacklist"
-      locations        = []
+      restriction_type = "none"
     }
   }
 
