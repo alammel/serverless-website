@@ -29,7 +29,7 @@ resource "aws_s3_bucket_object" "web-bucket-test" {
   provider = "aws.local"
   bucket   = "${local.name_short}-web"
   key      = "index.html"
-  source   = "${file("${path.module}/files/index.html")}"
+  content  = "${file("${path.module}/files/index.html")}"
 }
 
 ###
@@ -43,12 +43,10 @@ data "aws_iam_policy_document" "web-bucket" {
     sid = "AllowReadonlyObjectAccess"
 
     actions = [
-      "s3:ListObject",
       "s3:GetObject",
     ]
 
     resources = [
-      "${aws_s3_bucket.web-bucket.arn}",
       "${aws_s3_bucket.web-bucket.arn}/*",
     ]
 

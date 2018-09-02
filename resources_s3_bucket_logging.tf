@@ -32,12 +32,10 @@ data "aws_iam_policy_document" "logging-bucket" {
     sid = "AllowReadonlyObjectAccess"
 
     actions = [
-      "s3:ListObject",
       "s3:GetObject",
     ]
 
     resources = [
-      "${aws_s3_bucket.logging-bucket.arn}",
       "${aws_s3_bucket.logging-bucket.arn}/*",
     ]
 

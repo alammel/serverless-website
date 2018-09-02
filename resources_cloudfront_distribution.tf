@@ -36,8 +36,8 @@ resource "aws_cloudfront_distribution" "web" {
 
   logging_config {
     include_cookies = false
-    bucket          = "${aws_s3_bucket.logging-bucket.id}"
-    prefix          = "blog"
+    bucket          = "${aws_s3_bucket.logging-bucket.bucket_domain_name}"
+    prefix          = "blog/"
   }
 
   restrictions {
