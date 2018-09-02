@@ -54,7 +54,7 @@ resource "aws_iam_group_membership" "development" {
 
 resource "aws_ssm_parameter" "development_public_key_openssh" {
   provider = "aws.local"
-  name     = "/${local.path_short}/public_key_openssh"
+  name     = "/${local.path_short}/development/public_key_openssh"
   type     = "String"
   value    = "${tls_private_key.development.public_key_openssh}"
   tags     = "${local.tags}"
@@ -62,7 +62,7 @@ resource "aws_ssm_parameter" "development_public_key_openssh" {
 
 resource "aws_ssm_parameter" "development_private_key_pem" {
   provider = "aws.local"
-  name     = "/${local.path_short}/private_key_pem"
+  name     = "/${local.path_short}/development/private_key_pem"
   type     = "SecureString"
   value    = "${tls_private_key.development.private_key_pem}"
   tags     = "${local.tags}"
@@ -70,7 +70,7 @@ resource "aws_ssm_parameter" "development_private_key_pem" {
 
 resource "aws_ssm_parameter" "development_fingerprint" {
   provider = "aws.local"
-  name     = "/${local.path_short}/fingerprint"
+  name     = "/${local.path_short}/development/fingerprint"
   type     = "String"
   value    = "${aws_iam_user_ssh_key.development.fingerprint}"
   tags     = "${local.tags}"
@@ -78,7 +78,7 @@ resource "aws_ssm_parameter" "development_fingerprint" {
 
 resource "aws_ssm_parameter" "development_ssh_public_key_id" {
   provider = "aws.local"
-  name     = "/${local.path_short}/ssh_public_key_id"
+  name     = "/${local.path_short}/development/ssh_public_key_id"
   type     = "String"
   value    = "${aws_iam_user_ssh_key.development.ssh_public_key_id}"
   tags     = "${local.tags}"

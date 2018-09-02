@@ -14,5 +14,15 @@ resource "aws_iam_group" "development" {
   path     = "/users/"
 }
 
+###
+### Attach Development IAM Policy
+###
+
+resource "aws_iam_group_policy_attachment" "development" {
+  provider   = "aws.local"
+  group      = "${aws_iam_group.development.name}"
+  policy_arn = "${aws_iam_policy.development.arn}"
+}
+
 ### EOF
 
