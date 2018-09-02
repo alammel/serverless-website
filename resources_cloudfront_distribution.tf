@@ -54,7 +54,7 @@ resource "aws_cloudfront_distribution" "web" {
     target_origin_id = "${aws_cloudfront_origin_access_identity.web.id}"
 
     forwarded_values {
-      query_string = false
+      query_string = true
 
       cookies {
         forward = "none"
