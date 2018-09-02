@@ -24,7 +24,15 @@ locals {
   path_short = "${local.project}/${local.environment}/${local.component}"
   name_short = "${local.project}-${local.environment}-${local.component}"
 
-s3_origin_id = "origin-access-identity/cloudfront/ABCDEFG1234567"
+  ###
+  ### CloudFront configuration
+  ###
+
+  website_aliases = [
+    "noitect.de",
+    "www.noitect.de",
+    "blog.noitect.de",
+  ]
 
   ###
   ### Default Tags to set
