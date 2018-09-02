@@ -24,6 +24,8 @@ locals {
   path_short = "${local.project}/${local.environment}/${local.component}"
   name_short = "${local.project}-${local.environment}-${local.component}"
 
+s3_origin_id = "origin-access-identity/cloudfront/ABCDEFG1234567"
+
   ###
   ### Default Tags to set
   ###
