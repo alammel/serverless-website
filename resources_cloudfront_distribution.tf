@@ -46,7 +46,7 @@ resource "aws_cloudfront_distribution" "web" {
     }
   }
 
-  aliases = "${local.website_aliases}"
+  aliases = "${local.cloudfront_aliases}"
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -67,7 +67,7 @@ resource "aws_cloudfront_distribution" "web" {
     max_ttl                = 86400
   }
 
-  price_class = "PriceClass_All"
+  price_class = "${local.cloudfront_price_class}"
   tags        = "${local.tags}"
 
   viewer_certificate {

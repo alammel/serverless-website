@@ -28,7 +28,8 @@ locals {
   ### CloudFront configuration
   ###
 
-  website_aliases = [
+  cloudfront_price_class = "PriceClass_All"
+  cloudfront_aliases = [
     "noitect.de",
     "www.noitect.de",
     "blog.noitect.de",
