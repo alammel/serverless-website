@@ -26,10 +26,11 @@ resource "aws_s3_bucket" "web-bucket" {
 ###
 
 resource "aws_s3_bucket_object" "web-bucket-test" {
-  provider = "aws.local"
-  bucket   = "${local.name_short}-web"
-  key      = "index.html"
-  content  = "${file("${path.module}/files/index.html")}"
+  provider     = "aws.local"
+  bucket       = "${local.name_short}-web"
+  key          = "test.html"
+  content      = "${file("${path.module}/files/index.html")}"
+  content_type = "text/html"
 }
 
 ###
