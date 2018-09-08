@@ -83,6 +83,7 @@ data "aws_iam_policy_document" "development" {
     ]
 
     resources = [
+      "${aws_s3_bucket.web-bucket.arn}",
       "${aws_s3_bucket.web-bucket.arn}/*",
     ]
   }
