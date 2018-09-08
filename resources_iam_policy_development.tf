@@ -74,6 +74,18 @@ data "aws_iam_policy_document" "development" {
       "*",
     ]
   }
+
+  statement {
+    sid = "AllowS3Upload"
+
+    actions = [
+      "s3:*",
+    ]
+
+    resources = [
+      "${aws_s3_bucket.web-bucket.arn}/*",
+    ]
+  }
 }
 
 ###
