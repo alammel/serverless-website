@@ -14,9 +14,9 @@ locals {
   aws_account_id = "${var.aws_account_id}"
   aws_region     = "${var.aws_region}"
   aws_profile    = "${var.aws_profile}"
-  project     = "${var.project}"
-  environment = "${var.environment}"
-  component   = "${var.component}"
+  project        = "${var.project}"
+  environment    = "${var.environment}"
+  component      = "${var.component}"
 
   ###
   ### Resource Naming Scheme
@@ -44,6 +44,7 @@ locals {
   cf_logging_prefix = "blog/"
   cf_default_index  = "index.html"
   cf_comment_text   = "noitect.de"
+  cf_website_url    = "https://www.noitect.de"
 
   ###
   ### Default Tags to set
