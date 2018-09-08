@@ -8,16 +8,6 @@
 ### IAM Policy Object for CodeBuild
 ###
 
-resource "aws_iam_role_policy" "codebuild" {
-  provider = "aws.local"
-  role     = "${aws_iam_role.codebuild.name}"
-  policy   = "${data.aws_iam_policy_document.codebuild.json}"
-}
-
-###
-### IAM Policy Object for CodeBuild
-###
-
 data "aws_iam_policy_document" "codebuild" {
   provider = "aws.local"
 
@@ -103,6 +93,16 @@ data "aws_iam_policy_document" "codebuild" {
       "*",
     ]
   }
+}
+
+###
+### Create IAM Policy Object
+###
+
+resource "aws_iam_policy" "codebuild" {
+  provider = "aws.local"
+  name     = "${aws_iam_role.codebuild.name}"
+  policy   = "${data.aws_iam_policy_document.codebuild.json}"
 }
 
 ### EOF

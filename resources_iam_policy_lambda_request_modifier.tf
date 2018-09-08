@@ -30,9 +30,9 @@ data "aws_iam_policy_document" "request-modifier" {
 ### Create IAM Policy Object
 ###
 
-resource "aws_iam_role_policy" "request-modifier" {
+resource "aws_iam_policy" "request-modifier" {
   provider = "aws.local"
-  role     = "${aws_iam_role.request-modifier.name}"
+  name     = "${aws_iam_role.request-modifier.name}"
   policy   = "${data.aws_iam_policy_document.request-modifier.json}"
 }
 

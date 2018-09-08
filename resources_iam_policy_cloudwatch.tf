@@ -28,10 +28,20 @@ data "aws_iam_policy_document" "cloudwatch" {
 ### Create IAM Policy Object
 ###
 
-resource "aws_iam_role_policy" "cloudwatch" {
+resource "aws_iam_policy" "cloudwatch" {
   provider = "aws.local"
-  role     = "${aws_iam_role.cloudwatch.name}"
+  name     = "${aws_iam_role.cloudwatch.name}"
   policy   = "${data.aws_iam_policy_document.cloudwatch.json}"
+}
+
+###
+### Attach IAM Policy Object
+###
+
+resource "aws_iam_role_policy_attachment" "cloudwatch" {
+  provider   = "aws.local"
+  role       = "${aws_iam_role.cloudwatch.name}"
+  policy_arn = "${aws_iam_policy.cloudwatch.arn}"
 }
 
 ### EOF

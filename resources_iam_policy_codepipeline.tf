@@ -78,7 +78,7 @@ data "aws_iam_policy_document" "codepipeline" {
       "ec2:*",
       "elasticloadbalancing:*",
       "autoscaling:*",
-      "cloudwatch:*",
+      "codepipeline:*",
       "s3:*",
       "sns:*",
       "cloudformation:*",
@@ -182,9 +182,9 @@ data "aws_iam_policy_document" "codepipeline" {
 ### Create IAM Policy Object
 ###
 
-resource "aws_iam_role_policy" "codepipeline" {
+resource "aws_iam_policy" "codepipeline" {
   provider = "aws.local"
-  role     = "${aws_iam_role.codepipeline.name}"
+  name     = "${aws_iam_role.codepipeline.name}"
   policy   = "${data.aws_iam_policy_document.codepipeline.json}"
 }
 

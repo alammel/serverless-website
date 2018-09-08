@@ -5,16 +5,6 @@
 \*********************************************************************/
 
 ###
-### IAM Role for CodeBuild
-###
-
-resource "aws_iam_role" "codebuild" {
-  provider           = "aws.local"
-  name               = "${local.name_short}-codebuild"
-  assume_role_policy = "${data.aws_iam_policy_document.codebuild-assume-role.json}"
-}
-
-###
 ### IAM Assume Role Policy Document for CodeBuild
 ###
 
@@ -36,6 +26,26 @@ data "aws_iam_policy_document" "codebuild-assume-role" {
       ]
     }
   }
+}
+
+###
+### IAM Role for CodeBuild
+###
+
+resource "aws_iam_role" "codebuild" {
+  provider           = "aws.local"
+  name               = "${local.name_short}-codebuild"
+  assume_role_policy = "${data.aws_iam_policy_document.codebuild-assume-role.json}"
+}
+
+###
+### Attach IAM Policy Object
+###
+
+resource "aws_iam_role_policy_attachment" "codebuild" {
+  provider   = "aws.local"
+  role       = "${aws_iam_role.codebuild.name}"
+  policy_arn = "${aws_iam_policy.codebuild.arn}"
 }
 
 ### EOF

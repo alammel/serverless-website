@@ -5,16 +5,6 @@
 \*********************************************************************/
 
 ###
-### IAM Role for codepipeline
-###
-
-resource "aws_iam_role" "codepipeline" {
-  provider           = "aws.local"
-  name               = "${local.name_short}-codepipeline"
-  assume_role_policy = "${data.aws_iam_policy_document.codepipeline-assume-role.json}"
-}
-
-###
 ### IAM Assume Role Policy Document for codepipeline
 ###
 
@@ -36,6 +26,26 @@ data "aws_iam_policy_document" "codepipeline-assume-role" {
       ]
     }
   }
+}
+
+###
+### IAM Role for codepipeline
+###
+
+resource "aws_iam_role" "codepipeline" {
+  provider           = "aws.local"
+  name               = "${local.name_short}-codepipeline"
+  assume_role_policy = "${data.aws_iam_policy_document.codepipeline-assume-role.json}"
+}
+
+###
+### Attach IAM Policy Object
+###
+
+resource "aws_iam_role_policy_attachment" "codepipeline" {
+  provider   = "aws.local"
+  role       = "${aws_iam_role.codepipeline.name}"
+  policy_arn = "${aws_iam_policy.codepipeline.arn}"
 }
 
 ### EOF
