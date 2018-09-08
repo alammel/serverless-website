@@ -17,12 +17,12 @@ resource "aws_codebuild_project" "codebuild" {
 
     environment_variable {
       "name"  = "WEB_BUCKET_PRODUCTION"
-      "value" = "${aws_s3_bucket.web-bucket.name}"
+      "value" = "${aws_s3_bucket.web-bucket.id}"
     }
 
     environment_variable {
       "name"  = "WEB_BUCKET_TESTING"
-      "value" = "${aws_s3_bucket.web-bucket.name}"
+      "value" = "${aws_s3_bucket.web-bucket.id}"
     }
   }
 
