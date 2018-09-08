@@ -25,6 +25,15 @@ resource "aws_iam_user_ssh_key" "development" {
 }
 
 ###
+### Create IAM Access Key
+###
+
+resource "aws_iam_access_key" "development" {
+  provider = "aws.local"
+  user     = "${aws_iam_user.development.name}"
+}
+
+###
 ### Create Development IAM User
 ###
 
@@ -81,6 +90,22 @@ resource "aws_ssm_parameter" "development_ssh_public_key_id" {
   name     = "/${local.path_short}/development/ssh_public_key_id"
   type     = "String"
   value    = "${aws_iam_user_ssh_key.development.ssh_public_key_id}"
+  tags     = "${local.tags}"
+}
+
+resource "aws_ssm_parameter" "development_aws_key_id" {
+  provider = "aws.local"
+  name     = "/${local.path_short}/development/aws_key_id"
+  type     = "String"
+  value    = "${aws_iam_access_key.development.id}"
+  tags     = "${local.tags}"
+}
+
+resource "aws_ssm_parameter" "development_aws_secret_key" {
+  provider = "aws.local"
+  name     = "/${local.path_short}/development/aws_secret_key"
+  type     = "SecureString"
+  value    = "${aws_iam_access_key.development.secret}"
   tags     = "${local.tags}"
 }
 
