@@ -11,7 +11,7 @@
 provider "aws" {
   alias   = "local"
   region  = "${local.aws_region}"
-  profile = "noitect-terraform"
+  profile = "${local.aws_profile}"
 
   shared_credentials_file = "/Users/Andre Lammel/.aws/credentials"
 
@@ -27,8 +27,8 @@ provider "aws" {
 
 provider "aws" {
   alias   = "cloudfront"
-  region  = "us-east-1"
-  profile = "noitect-terraform"
+  region  = "${local.cf_region_main}"
+  profile = "${local.aws_profile}"
 
   shared_credentials_file = "/Users/Andre Lammel/.aws/credentials"
 

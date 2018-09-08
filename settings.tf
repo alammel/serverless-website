@@ -13,9 +13,10 @@ locals {
 
   aws_account_id = "${var.aws_account_id}"
   aws_region     = "${var.aws_region}"
-  project        = "${var.project}"
-  environment    = "${var.environment}"
-  component      = "${var.component}"
+  aws_profile    = "${var.aws_profile}"
+  project     = "${var.project}"
+  environment = "${var.environment}"
+  component   = "${var.component}"
 
   ###
   ### Resource Naming Scheme
@@ -39,6 +40,7 @@ locals {
   ### CloudFront Logging
   ###
 
+  cf_region_main    = "us-east-1"
   cf_logging_prefix = "blog/"
   cf_default_index  = "index.html"
   cf_comment_text   = "noitect.de"
