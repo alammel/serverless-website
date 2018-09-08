@@ -27,7 +27,7 @@ resource "aws_s3_bucket" "web-bucket" {
 
 resource "aws_s3_bucket_object" "web-bucket-test" {
   provider     = "aws.local"
-  bucket       = "${local.name_short}-web"
+  bucket       = "${aws_s3_bucket.web-bucket.name}"
   key          = "test.html"
   content      = "${file("${path.module}/files/index.html")}"
   content_type = "text/html"
