@@ -50,6 +50,18 @@ data "aws_iam_policy_document" "development" {
       "${aws_ecr_repository.codebuild.arn}/*",
     ]
   }
+
+  statement {
+    sid = "AllowGetAuthorizationToken"
+
+    actions = [
+      "ecr:GetAuthorizationToken",
+    ]
+
+    resources = [
+      "*",
+    ]
+  }
 }
 
 ###

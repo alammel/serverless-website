@@ -1,6 +1,6 @@
 /*********************************************************************\
  *
- * IAM Development Group for this Terraform Project
+ * ECR Repository for this Terraform Project
  *
 \*********************************************************************/
 
