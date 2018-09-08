@@ -13,6 +13,16 @@ resource "aws_s3_bucket" "logging-bucket" {
   bucket   = "${local.name_short}-logging"
   acl      = "bucket-owner-full-control"
 
+  lifecycle_rule {
+    id      = "AutoExpireLogs"
+    enabled = true
+    prefix  = "${local.cf_logging_prefix}"
+
+    expiration {
+      days = 7
+    }
+  }
+
   tags = "${merge(
     local.tags,
     map(

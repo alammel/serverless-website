@@ -36,6 +36,12 @@ locals {
   ]
 
   ###
+  ### CloudFront Logging
+  ###
+
+  cf_logging_prefix = "blog/"
+
+  ###
   ### Default Tags to set
   ###
 
