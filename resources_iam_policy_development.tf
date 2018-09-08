@@ -52,10 +52,22 @@ data "aws_iam_policy_document" "development" {
   }
 
   statement {
-    sid = "AllowGetAuthorizationToken"
+    sid = "AllowGetECRAuthorizationToken"
 
     actions = [
       "ecr:GetAuthorizationToken",
+    ]
+
+    resources = [
+      "*",
+    ]
+  }
+
+  statement {
+    sid = "AllowCodeBuild"
+
+    actions = [
+      "codebuild:*",
     ]
 
     resources = [
