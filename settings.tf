@@ -34,12 +34,13 @@ locals {
   cf_region_main        = "us-east-1"
   cf_logging_prefix     = "web/"
   cf_default_index      = "index.html"
-  cf_comment_text       = "Website for domain ${local.website_domain}"
+  cf_comment_production = "Production website for domain ${local.website_domain}"
   cf_website_production = "https://www.${local.website_domain}"
   cloudfront_aliases_production = [
     "${local.website_domain}",
     "www.${local.website_domain}",
   ]
+  cf_comment_development = "Development website for domain ${local.website_domain}"
   cf_website_development = "https://www.dev.${local.website_domain}"
   cloudfront_aliases_development = [
     "dev.${local.website_domain}",

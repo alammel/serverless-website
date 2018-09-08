@@ -31,7 +31,7 @@ resource "aws_cloudfront_distribution" "web-production" {
 
   enabled             = true
   is_ipv6_enabled     = true
-  comment             = "${local.cf_comment_text}"
+  comment             = "${local.cf_comment_production}"
   default_root_object = "${local.cf_default_index}"
 
   logging_config {

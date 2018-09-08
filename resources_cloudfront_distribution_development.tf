@@ -21,7 +21,7 @@ resource "aws_cloudfront_distribution" "web-development" {
   provider = "aws.local"
 
   origin {
-    domain_name = "${aws_s3_bucket.web-bucket-production.bucket_regional_domain_name}"
+    domain_name = "${aws_s3_bucket.web-bucket-development.bucket_regional_domain_name}"
     origin_id   = "${aws_cloudfront_origin_access_identity.web-development.id}"
 
     s3_origin_config {
@@ -31,7 +31,7 @@ resource "aws_cloudfront_distribution" "web-development" {
 
   enabled             = true
   is_ipv6_enabled     = true
-  comment             = "${local.cf_comment_text}"
+  comment             = "${local.cf_comment_development}"
   default_root_object = "${local.cf_default_index}"
 
   logging_config {
