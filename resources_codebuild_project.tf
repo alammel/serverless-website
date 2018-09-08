@@ -25,6 +25,11 @@ resource "aws_codebuild_project" "codebuild" {
       "name"  = "WEB_BUCKET_TESTING"
       "value" = "${aws_s3_bucket.web-bucket.id}"
     }
+
+    environment_variable {
+      "name"  = "CLOUDFRONT_DISTRIBUTION"
+      "value" = "${aws_cloudfront_distribution.web.id}"
+    }
   }
 
   source {

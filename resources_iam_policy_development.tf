@@ -87,6 +87,25 @@ data "aws_iam_policy_document" "development" {
       "${aws_s3_bucket.web-bucket.arn}/*",
     ]
   }
+
+  statement {
+    sid = "AllowCreateInvalidation"
+
+    actions = [
+      "cloudfront:CreateInvalidation",
+      "cloudfront:GetDistribution",
+      "cloudfront:GetStreamingDistribution",
+      "cloudfront:GetDistributionConfig",
+      "cloudfront:GetInvalidation",
+      "cloudfront:ListInvalidations",
+      "cloudfront:ListStreamingDistributions",
+      "cloudfront:ListDistributions",
+    ]
+
+    resources = [
+      "*",
+    ]
+  }
 }
 
 ###
