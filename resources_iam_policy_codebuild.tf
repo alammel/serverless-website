@@ -70,8 +70,10 @@ data "aws_iam_policy_document" "codebuild" {
     ]
 
     resources = [
-      "${aws_s3_bucket.web-bucket.arn}",
-      "${aws_s3_bucket.web-bucket.arn}/*",
+      "${aws_s3_bucket.web-bucket-production.arn}",
+      "${aws_s3_bucket.web-bucket-production.arn}/*",
+      "${aws_s3_bucket.web-bucket-development.arn}",
+      "${aws_s3_bucket.web-bucket-development.arn}/*",
     ]
   }
 

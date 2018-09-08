@@ -4,13 +4,13 @@
  *
 \*********************************************************************/
 
-resource "aws_codepipeline" "codepipeline-production" {
+resource "aws_codepipeline" "codepipeline-development" {
   provider = "aws.local"
-  name     = "${local.name_short}-codepipeline-production"
+  name     = "${local.name_short}-codepipeline-development"
   role_arn = "${aws_iam_role.codepipeline.arn}"
 
   artifact_store {
-    location = "${aws_s3_bucket.web-bucket-production.bucket}"
+    location = "${aws_s3_bucket.web-bucket-development.bucket}"
     type     = "S3"
   }
 
@@ -30,7 +30,7 @@ resource "aws_codepipeline" "codepipeline-production" {
       configuration {
         PollForSourceChanges = false
         RepositoryName       = "${aws_codecommit_repository.web.repository_name}"
-        BranchName           = "master"
+        BranchName           = "development"
       }
     }
   }
@@ -49,7 +49,7 @@ resource "aws_codepipeline" "codepipeline-production" {
       run_order        = 1
 
       configuration {
-        ProjectName = "${aws_codebuild_project.codebuild-production.name}"
+        ProjectName = "${aws_codebuild_project.codebuild-development.name}"
       }
     }
   }

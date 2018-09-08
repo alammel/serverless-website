@@ -13,7 +13,7 @@ provider "aws" {
   region  = "${local.aws_region}"
   profile = "${local.aws_profile}"
 
-  shared_credentials_file = "/Users/Andre Lammel/.aws/credentials"
+  shared_credentials_file = "${local.credential_file}"
 
   assume_role {
     role_arn     = "arn:aws:iam::${local.aws_account_id}:role/service.terraform"
@@ -30,11 +30,11 @@ provider "aws" {
   region  = "${local.cf_region_main}"
   profile = "${local.aws_profile}"
 
-  shared_credentials_file = "/Users/Andre Lammel/.aws/credentials"
+  shared_credentials_file = "${local.credential_file}"
 
   assume_role {
     role_arn     = "arn:aws:iam::${local.aws_account_id}:role/service.terraform"
-    session_name = "${local.name_short}-certificate"
+    session_name = "${local.name_short}-cloudfront"
   }
 }
 

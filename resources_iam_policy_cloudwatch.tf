@@ -19,7 +19,8 @@ data "aws_iam_policy_document" "cloudwatch" {
     ]
 
     resources = [
-      "${aws_codepipeline.codepipeline.arn}",
+      "${aws_codepipeline.codepipeline-production.arn}",
+      "${aws_codepipeline.codepipeline-development.arn}",
     ]
   }
 }

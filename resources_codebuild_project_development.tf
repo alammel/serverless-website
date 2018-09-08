@@ -1,7 +1,7 @@
-resource "aws_codebuild_project" "codebuild-production" {
+resource "aws_codebuild_project" "codebuild-development" {
   provider    = "aws.local"
-  name        = "${local.name_short}-production"
-  description = "${local.name_short}-production"
+  name        = "${local.name_short}-development"
+  description = "${local.name_short}-development"
 
   build_timeout = "5"
   service_role  = "${aws_iam_role.codebuild.arn}"
@@ -18,17 +18,17 @@ resource "aws_codebuild_project" "codebuild-production" {
 
     environment_variable {
       "name"  = "WEB_BUCKET_NAME"
-      "value" = "${aws_s3_bucket.web-bucket-production.id}"
+      "value" = "${aws_s3_bucket.web-bucket-development.id}"
     }
 
     environment_variable {
       "name"  = "CLOUDFRONT_DISTRIBUTION"
-      "value" = "${aws_cloudfront_distribution.web-production.id}"
+      "value" = "${aws_cloudfront_distribution.web-development.id}"
     }
 
     environment_variable {
       "name"  = "WEBSITE_URL"
-      "value" = "${local.cf_website_production}"
+      "value" = "${local.cf_website_development}"
     }
   }
 
@@ -41,7 +41,7 @@ resource "aws_codebuild_project" "codebuild-production" {
   tags = "${merge(
     local.tags,
     map(
-      "Name", "${local.name_short}-production",
+      "Name", "${local.name_short}-development",
       "Function", "codebuild-project",
     ))}"
 }

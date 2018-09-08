@@ -8,16 +8,16 @@
 ### Web Bucket
 ###
 
-resource "aws_s3_bucket" "web-bucket-production" {
+resource "aws_s3_bucket" "web-bucket-development" {
   provider = "aws.local"
-  bucket   = "${local.name_short}-production"
+  bucket   = "${local.name_short}-development"
   acl      = "bucket-owner-full-control"
 
   tags = "${merge(
     local.tags,
     map(
-      "Name", "${local.name_short}-production",
-      "Function", "web-bucket-production",
+      "Name", "${local.name_short}-development",
+      "Function", "web-bucket-development",
     ))}"
 }
 
@@ -26,9 +26,9 @@ resource "aws_s3_bucket" "web-bucket-production" {
 ###
 
 /*
-resource "aws_s3_bucket_object" "web-bucket-production-test" {
+resource "aws_s3_bucket_object" "web-bucket-development-test" {
   provider     = "aws.local"
-  bucket       = "${aws_s3_bucket.web-bucket-production.id}"
+  bucket       = "${aws_s3_bucket.web-bucket-development.id}"
   key          = "test.html"
   content      = "${file("${path.module}/files/test.html")}"
   content_type = "text/html"
@@ -39,7 +39,7 @@ resource "aws_s3_bucket_object" "web-bucket-production-test" {
 ### Web Bucket Policy Document
 ###
 
-data "aws_iam_policy_document" "web-bucket-production" {
+data "aws_iam_policy_document" "web-bucket-development" {
   provider = "aws.local"
 
   statement {
@@ -50,7 +50,7 @@ data "aws_iam_policy_document" "web-bucket-production" {
     ]
 
     resources = [
-      "${aws_s3_bucket.web-bucket-production.arn}/*",
+      "${aws_s3_bucket.web-bucket-development.arn}/*",
     ]
 
     principals {
@@ -58,7 +58,7 @@ data "aws_iam_policy_document" "web-bucket-production" {
 
       identifiers = [
         "${aws_iam_user.development.arn}",
-        "${aws_cloudfront_origin_access_identity.web-production.iam_arn}",
+        "${aws_cloudfront_origin_access_identity.web-development.iam_arn}",
       ]
     }
   }
@@ -71,7 +71,7 @@ data "aws_iam_policy_document" "web-bucket-production" {
     ]
 
     resources = [
-      "${aws_s3_bucket.web-bucket-production.arn}",
+      "${aws_s3_bucket.web-bucket-development.arn}",
     ]
 
     principals {
@@ -79,7 +79,7 @@ data "aws_iam_policy_document" "web-bucket-production" {
 
       identifiers = [
         "${aws_iam_user.development.arn}",
-        "${aws_cloudfront_origin_access_identity.web-production.iam_arn}",
+        "${aws_cloudfront_origin_access_identity.web-development.iam_arn}",
       ]
     }
   }
@@ -89,10 +89,10 @@ data "aws_iam_policy_document" "web-bucket-production" {
 ### Web Bucket Policy Object
 ###
 
-resource "aws_s3_bucket_policy" "web-bucket-production" {
+resource "aws_s3_bucket_policy" "web-bucket-development" {
   provider = "aws.local"
-  bucket   = "${aws_s3_bucket.web-bucket-production.id}"
-  policy   = "${data.aws_iam_policy_document.web-bucket-production.json}"
+  bucket   = "${aws_s3_bucket.web-bucket-development.id}"
+  policy   = "${data.aws_iam_policy_document.web-bucket-development.json}"
 }
 
 ### EOF

@@ -10,6 +10,8 @@ variable "aws_profile" {}
 variable "project" {}
 variable "component" {}
 variable "environment" {}
+variable "website_domain" {}
+variable "credential_file" {}
 
 ### EOF
 
