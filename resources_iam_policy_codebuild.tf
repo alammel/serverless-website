@@ -71,6 +71,18 @@ data "aws_iam_policy_document" "codebuild" {
       "${aws_codecommit_repository.web.arn}/*",
     ]
   }
+
+  statement {
+    sid = "AllowS3Upload"
+
+    actions = [
+      "s3:*",
+    ]
+
+    resources = [
+      "${aws_s3_bucket.web-bucket.arn}/*",
+    ]
+  }
 }
 
 ### EOF
