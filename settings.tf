@@ -40,6 +40,8 @@ locals {
   ###
 
   cf_logging_prefix = "blog/"
+  cf_default_index  = "index.html"
+  cf_comment_text   = "noitect.de"
 
   ###
   ### Default Tags to set

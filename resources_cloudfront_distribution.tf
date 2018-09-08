@@ -31,8 +31,8 @@ resource "aws_cloudfront_distribution" "web" {
 
   enabled             = true
   is_ipv6_enabled     = true
-  comment             = "noitect.de"
-  default_root_object = "index.html"
+  comment             = "${local.cf_comment_text}"
+  default_root_object = "${local.cf_default_index}"
 
   logging_config {
     include_cookies = false

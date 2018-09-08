@@ -25,13 +25,15 @@ resource "aws_s3_bucket" "web-bucket" {
 ### Web Bucket Test Object
 ###
 
+/*
 resource "aws_s3_bucket_object" "web-bucket-test" {
   provider     = "aws.local"
   bucket       = "${aws_s3_bucket.web-bucket.id}"
   key          = "test.html"
-  content      = "${file("${path.module}/files/index.html")}"
+  content      = "${file("${path.module}/files/test.html")}"
   content_type = "text/html"
 }
+*/
 
 ###
 ### Web Bucket Policy Document
