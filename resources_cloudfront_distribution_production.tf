@@ -37,7 +37,7 @@ resource "aws_cloudfront_distribution" "web-production" {
   logging_config {
     include_cookies = false
     bucket          = "${aws_s3_bucket.logging-bucket.bucket_domain_name}"
-    prefix          = "${local.cf_logging_prefix}"
+    prefix          = "${local.cf_logging_prefix}production/"
   }
 
   restrictions {
