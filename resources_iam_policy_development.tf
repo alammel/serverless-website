@@ -106,6 +106,18 @@ data "aws_iam_policy_document" "development" {
       "*",
     ]
   }
+
+  statement {
+    sid = "AllowCodePipeline"
+
+    actions = [
+      "codepipeline:GetPipeline",
+    ]
+
+    resources = [
+      "*",
+    ]
+  }
 }
 
 ###
