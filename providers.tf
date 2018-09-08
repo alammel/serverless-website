@@ -26,7 +26,7 @@ provider "aws" {
 ###
 
 provider "aws" {
-  alias   = "certificate"
+  alias   = "cloudfront"
   region  = "us-east-1"
   profile = "noitect-terraform"
 

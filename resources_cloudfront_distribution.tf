@@ -67,7 +67,7 @@ resource "aws_cloudfront_distribution" "web" {
     max_ttl                = 86400
 
     lambda_function_association {
-      event_type = "viewer-request"
+      event_type = "origin-request"
       lambda_arn = "${aws_lambda_function.request-modifier.qualified_arn}"
     }
   }

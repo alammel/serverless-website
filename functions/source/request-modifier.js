@@ -1,3 +1,5 @@
+// Modify Requests for Hugo Websites to work on S3
+
 'use strict';
 
 exports.handler = (event, context, callback) => {

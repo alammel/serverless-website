@@ -19,7 +19,7 @@ data "archive_file" "request-modifier" {
 ###
 
 resource "aws_lambda_function" "request-modifier" {
-  provider = "aws.local"
+  provider = "aws.cloudfront"
 
   filename         = "${path.module}/functions/packaged/request-modifier.zip"
   function_name    = "request-modifier"
@@ -28,12 +28,6 @@ resource "aws_lambda_function" "request-modifier" {
   source_code_hash = "${data.archive_file.request-modifier.output_base64sha256}"
   runtime          = "nodejs8.10"
   publish          = true
-
-  environment {
-    variables = {
-      codebuid_project_name = "${local.name_short}"
-    }
-  }
 }
 
 ### EOF
