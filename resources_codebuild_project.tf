@@ -5,6 +5,7 @@ resource "aws_codebuild_project" "codebuild" {
 
   build_timeout = "5"
   service_role  = "${aws_iam_role.codebuild.arn}"
+  badge_enabled = true
 
   artifacts {
     type = "NO_ARTIFACTS"
@@ -28,7 +29,7 @@ resource "aws_codebuild_project" "codebuild" {
 
   source {
     type            = "CODECOMMIT"
-    location        = "${aws_codecommit_repository.web.arn}"
+    location        = "${aws_codecommit_repository.web.clone_url_http}"
     git_clone_depth = 1
   }
 
