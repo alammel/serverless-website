@@ -1,8 +1,10 @@
-resource "aws_codebuild_project" "example" {
-  name         = "${local.name_short}"
-  description  = "${local.name_short"
-  build_timeout      = "5"
-  service_role = "${aws_iam_role.codebuild.arn}"
+resource "aws_codebuild_project" "codebuild" {
+  provider    = "aws.local"
+  name        = "${local.name_short}"
+  description = "${local.name_short}"
+
+  build_timeout = "5"
+  service_role  = "${aws_iam_role.codebuild.arn}"
 
   artifacts {
     type = "NO_ARTIFACTS"
@@ -26,7 +28,7 @@ resource "aws_codebuild_project" "example" {
 
   source {
     type            = "CODECOMMIT"
-    location        = "${aws_codecommit_repository.arn}"
+    location        = "${aws_codecommit_repository.web.arn}"
     git_clone_depth = 1
   }
 
@@ -37,3 +39,6 @@ resource "aws_codebuild_project" "example" {
       "Function", "codebuild-project",
     ))}"
 }
+
+### EOF
+
