@@ -11,14 +11,14 @@ OUTPUT_FILE="statefile.tf"
 ### Parse configuration file
 ###
 
-AWS_ACCTID="$(cat ${CONFIG_FILE} | grep aws_account_id  | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/"*//g')"
-AWS_REGION="$(cat ${CONFIG_FILE} | grep aws_region      | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/"*//g')"
-AWS_PROFLE="$(cat ${CONFIG_FILE} | grep aws_profile     | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/"*//g')"
-PROJECT_ID="$(cat ${CONFIG_FILE} | grep project         | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/"*//g')"
-PCOMPONENT="$(cat ${CONFIG_FILE} | grep component       | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/"*//g')"
-ENVIRONMEN="$(cat ${CONFIG_FILE} | grep environment     | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/"*//g')"
-PCREDSFILE="$(cat ${CONFIG_FILE} | grep credential_file | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/"*//g')"
-BACKENDBKT="$(cat ${CONFIG_FILE} | grep backend_bucket  | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/"*//g')"
+AWS_ACCTID="$(cat ${CONFIG_FILE} | grep aws_account_id  | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/\"*//g')"
+AWS_REGION="$(cat ${CONFIG_FILE} | grep aws_region      | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/\"*//g')"
+AWS_PROFLE="$(cat ${CONFIG_FILE} | grep aws_profile     | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/\"*//g')"
+PROJECT_ID="$(cat ${CONFIG_FILE} | grep project         | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/\"*//g')"
+PCOMPONENT="$(cat ${CONFIG_FILE} | grep component       | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/\"*//g')"
+ENVIRONMEN="$(cat ${CONFIG_FILE} | grep environment     | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/\"*//g')"
+PCREDSFILE="$(cat ${CONFIG_FILE} | grep credential_file | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/\"*//g')"
+BACKENDBKT="$(cat ${CONFIG_FILE} | grep backend_bucket  | awk -F '=' '{print $2}' | sed 's/^\s*//g; s/\s*$//g; s/\"*//g')"
 
 ###
 ### Report data parsed from configuration
