@@ -1,4 +1,5 @@
 .terraform
 terraform.tfstate*
+statefile.tf
 functions/packaged
 docker/Makefile

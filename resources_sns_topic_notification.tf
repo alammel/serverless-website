@@ -42,45 +42,11 @@ data "aws_iam_policy_document" "notification" {
     ]
 
     principals {
-      type = "AWS"
+      type = "Service"
 
       identifiers = [
-        "*",
+        "events.amazonaws.com",
       ]
-    }
-  }
-
-  statement {
-    sid = "AllowMultiAccessToTopic"
-
-    actions = [
-      "SNS:Publish",
-      "SNS:RemovePermission",
-      "SNS:SetTopicAttributes",
-      "SNS:DeleteTopic",
-      "SNS:ListSubscriptionsByTopic",
-      "SNS:GetTopicAttributes",
-      "SNS:Receive",
-      "SNS:AddPermission",
-      "SNS:Subscribe",
-    ]
-
-    resources = [
-      "${aws_sns_topic.notification.arn}",
-    ]
-
-    principals {
-      type = "AWS"
-
-      identifiers = [
-        "*",
-      ]
-    }
-
-    condition {
-      test     = "StringEquals"
-      variable = "AWS:SourceOwner"
-      values   = ["${local.aws_account_id}"]
     }
   }
 }

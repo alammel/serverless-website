@@ -1,9 +1,12 @@
 TFVARS := terraform.tfvars
 
 all: validate plan apply
-all-init: init all
+init: backend tfinit
 
-init:
+backend:
+	bash ./createBackendConfig.sh
+
+tfinit:
 	terraform init
 
 validate:

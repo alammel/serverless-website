@@ -20,6 +20,7 @@ locals {
   website_domain  = "${var.website_domain}"
   credential_file = "${var.credential_file}"
   aws_dev_profile = "${var.aws_dev_profile}"
+  backend_bucket  = "${var.backend_bucket}"
 
   ###
   ### Resource Naming Scheme
