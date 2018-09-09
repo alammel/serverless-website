@@ -4,9 +4,9 @@
  *
 \*********************************************************************/
 
-resource "aws_cloudwatch_event_rule" "cloudwatch-production" {
+resource "aws_cloudwatch_event_rule" "cloudwatch-development" {
   provider    = "aws.local"
-  name        = "${local.name_short}-cloudwatch-production"
+  name        = "${local.name_short}-cloudwatch-development"
   description = "Trigger CodePipeline"
 
   event_pattern = <<PATTERN
@@ -29,19 +29,19 @@ resource "aws_cloudwatch_event_rule" "cloudwatch-production" {
       "branch"
     ],
     "referenceName": [
-      "master"
+      "development"
     ]
   }
 }
 PATTERN
 }
 
-resource "aws_cloudwatch_event_target" "cloudwatch-production" {
+resource "aws_cloudwatch_event_target" "cloudwatch-development" {
   provider  = "aws.local"
-  rule      = "${aws_cloudwatch_event_rule.cloudwatch-production.name}"
-  target_id = "TrigerCodePipeline"
+  rule      = "${aws_cloudwatch_event_rule.cloudwatch-development.name}"
+  target_id = "TriggerCodePipeline"
   role_arn  = "${aws_iam_role.cloudwatch.arn}"
-  arn       = "${aws_codepipeline.codepipeline-production.arn}"
+  arn       = "${aws_codepipeline.codepipeline-development.arn}"
 }
 
 ### EOF
