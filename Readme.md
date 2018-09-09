@@ -92,7 +92,7 @@ You can just add it as an additional remote to your Git configuration. If you ha
 
 ## Before you can start to manage content ##
 
-We are using CodeBuild to compile your website using Hugo. As a prerequisite, we need to create a Docker Image that contains all the necessary tools.
+This project runs CodeBuild to compile your website using Hugo. As a prerequisite, we need to create a Docker Image that contains all the necessary tools.
 
 To simplify this task, the initial Terraform build creates a Makefile that takes care of all the required steps for you.
 
