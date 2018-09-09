@@ -84,9 +84,15 @@ You can omit the steps to generate your SSH key from the documentation as the Te
 * Configure your SSH Client to use the SSH Private Key to access Git
 * Configure your SSH Client to use the SSH Key ID as user name to access Git
 
-## Before you can manage content ##
+## Version Control for your Terraform Project ##
 
-We are using CodeBuild to compile your website using Hugo. As a prerequisite, we need to create a Docker Image that contains al the necessary tools.
+The initial build creates a CodeCommit Repository for your own copy of this Project.
+
+You can just add it as an additional remote to your Git configuration. If you have successfully finished all prior steps, you should be able to use that origin without any further configuration.
+
+## Before you can start to manage content ##
+
+We are using CodeBuild to compile your website using Hugo. As a prerequisite, we need to create a Docker Image that contains all the necessary tools.
 
 To simply this task, the initial Terraform buld creates a Makefile tha takes care of all the required steps for you.
 
@@ -94,13 +100,7 @@ To simply this task, the initial Terraform buld creates a Makefile tha takes car
 
 Once this has been completed successfully, you can start managing content.
 
-## Version Management for Terraform Project ##
-
-The initial build creates a CodeCommit Repository for your own copy of this Project.
-
-You can just add it as an additional remote to your Git configuration. If you have successfully finished all prior steps, you should be able to use that origin without any further configuration.
-
-## Content Management ##
+## Getting started with Content Management ##
 
 The initial build creates a CodeCommit Repository for your Website content.
 
