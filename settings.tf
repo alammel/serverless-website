@@ -28,25 +28,36 @@ locals {
   name_short = "${local.project}-${local.environment}-${local.component}"
 
   ###
+  ### Route 53 configuration
+  ###
+
+  route53_zone_id = "${data.aws_route53_zone.website_domain.zone_id}"
+
+  ###
   ### CloudFront configuration
   ###
 
-  cf_region_main        = "us-east-1"
-  cf_logging_prefix     = "web/"
-  cf_default_index      = "index.html"
-  cf_comment_production = "Production website for domain ${local.website_domain}"
-  cf_website_production = "https://www.${local.website_domain}"
-  cloudfront_aliases_production = [
-    "${local.website_domain}",
-    "www.${local.website_domain}",
-  ]
+  cf_price_class         = "PriceClass_All"
+  cf_region_main         = "us-east-1"
+  cf_logging_prefix      = "web/"
+  cf_default_index       = "index.html"
+  cf_comment_production  = "Production website for domain ${local.website_domain}"
   cf_comment_development = "Development website for domain ${local.website_domain}"
-  cf_website_development = "https://www.dev.${local.website_domain}"
-  cloudfront_aliases_development = [
-    "dev.${local.website_domain}",
-    "www.dev.${local.website_domain}",
+
+  ###
+  ### Website Domains conficuration
+  ###
+
+  website_domain_production = "www.${local.website_domain}"
+  website_url_production    = "https://${local.website_domain_production}"
+  website_aliases_production = [
+    "${local.website_domain}",
   ]
-  cloudfront_price_class = "PriceClass_All"
+  website_domain_development = "www.dev.${local.website_domain}"
+  website_url_development    = "https://${local.website_domain_development}"
+  website_aliases_development = [
+    "dev.${local.website_domain}",
+  ]
 
   ###
   ### Default Tags to set

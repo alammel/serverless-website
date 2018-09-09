@@ -28,7 +28,7 @@ resource "aws_codebuild_project" "codebuild-development" {
 
     environment_variable {
       "name"  = "WEBSITE_URL"
-      "value" = "${local.cf_website_development}"
+      "value" = "${local.website_url_development}"
     }
   }
 

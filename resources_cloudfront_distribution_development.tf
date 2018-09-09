@@ -9,7 +9,7 @@
 ###
 
 resource "aws_cloudfront_origin_access_identity" "web-development" {
-  provider = "aws.local"
+  provider = "aws.cloudfront"
   comment  = "Access Identity to be used in bucket policy"
 }
 
@@ -18,7 +18,7 @@ resource "aws_cloudfront_origin_access_identity" "web-development" {
 ###
 
 resource "aws_cloudfront_distribution" "web-development" {
-  provider = "aws.local"
+  provider = "aws.cloudfront"
 
   origin {
     domain_name = "${aws_s3_bucket.web-bucket-development.bucket_regional_domain_name}"
@@ -46,12 +46,16 @@ resource "aws_cloudfront_distribution" "web-development" {
     }
   }
 
-  aliases = "${local.cloudfront_aliases_development}"
+  aliases = "${concat(
+    local.website_aliases_development,
+    list(local.website_domain_development),
+  )}"
 
   default_cache_behavior {
-    allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
-    cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "${aws_cloudfront_origin_access_identity.web-development.id}"
+    allowed_methods        = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
+    cached_methods         = ["GET", "HEAD"]
+    target_origin_id       = "${aws_cloudfront_origin_access_identity.web-development.id}"
+    viewer_protocol_policy = "redirect-to-https"
 
     forwarded_values {
       query_string = true
@@ -61,10 +65,9 @@ resource "aws_cloudfront_distribution" "web-development" {
       }
     }
 
-    viewer_protocol_policy = "allow-all"
-    min_ttl                = 0
-    default_ttl            = 3600
-    max_ttl                = 86400
+    min_ttl     = 0
+    default_ttl = 3600
+    max_ttl     = 86400
 
     lambda_function_association {
       event_type = "origin-request"
@@ -72,11 +75,13 @@ resource "aws_cloudfront_distribution" "web-development" {
     }
   }
 
-  price_class = "${local.cloudfront_price_class}"
+  price_class = "${local.cf_price_class}"
   tags        = "${local.tags}"
 
   viewer_certificate {
-    cloudfront_default_certificate = true
+    acm_certificate_arn      = "${aws_acm_certificate.website-certificate-development.arn}"
+    ssl_support_method       = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2018"
   }
 }
 
