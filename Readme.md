@@ -106,7 +106,7 @@ The initial build creates a CodeCommit Repository for your Website content.
 
 You can just add it as a remote to your existing Git configuration. If you have successfully finished all prior steps, you should be able to use that origin without any further configuration.
 
-Please make sure to use the following directory structure and that `Makefile` and `buildspec.yaml` are present. PLease see the content of those two files in the next sections.
+Please make sure to use the following directory structure and that `Makefile` and `buildspec.yaml` are present. See the next sections for the content that needs to go into these two files.
 
 The usual data for your Hugo project goes to the `src` sub directory.
 
