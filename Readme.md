@@ -53,7 +53,7 @@ Before running your first build, please make sure that you have your AWS Account
 As a next step, you have to create the Terrform variables file `terraform.tfvars` with the following content:
 
     aws_account_id  = "<AWS Account ID>"
-    aws_region      = "<AWS Region]>"
+    aws_region      = "<AWS Region>"
     aws_profile     = "<AWS Credentials Profile for Terraform>"
     project         = "<The Project Name>"
     component       = "<The Project Component Name>"
