@@ -19,6 +19,7 @@ locals {
   component       = "${var.component}"
   website_domain  = "${var.website_domain}"
   credential_file = "${var.credential_file}"
+  aws_dev_profile = "${var.aws_dev_profile}"
 
   ###
   ### Resource Naming Scheme

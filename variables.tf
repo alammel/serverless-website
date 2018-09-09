@@ -12,6 +12,7 @@ variable "component" {}
 variable "environment" {}
 variable "website_domain" {}
 variable "credential_file" {}
+variable aws_dev_profile {}
 
 ### EOF
 
