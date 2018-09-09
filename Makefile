@@ -1,6 +1,6 @@
 TFVARS := terraform.tfvars
 
-all: validate plan apply
+all: init validate plan apply
 init: backend tfinit
 
 backend:
