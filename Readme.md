@@ -94,7 +94,7 @@ You can just add it as an additional remote to your Git configuration. If you ha
 
 We are using CodeBuild to compile your website using Hugo. As a prerequisite, we need to create a Docker Image that contains all the necessary tools.
 
-To simply this task, the initial Terraform buld creates a Makefile tha takes care of all the required steps for you.
+To simplify this task, the initial Terraform build creates a Makefile that takes care of all the required steps for you.
 
 * Go to the `docker` directory and run `make all`
 
@@ -109,7 +109,6 @@ You can just add it as a remote to your existing Git configuration. If you have 
 Please make sure to use the following directory structure and that `Makefile` and `buildspec.yaml` are present. See the next sections for the content that needs to go into these two files.
 
 The usual data for your Hugo project goes to the `src` sub directory.
-
 
     /
     | - Makefile
