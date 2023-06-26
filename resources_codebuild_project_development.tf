@@ -17,18 +17,18 @@ resource "aws_codebuild_project" "codebuild-development" {
     type         = "LINUX_CONTAINER"
 
     environment_variable {
-      "name"  = "WEB_BUCKET_NAME"
-      "value" = "${aws_s3_bucket.web-bucket-development.id}"
+      name  = "WEB_BUCKET_NAME"
+      value = "${aws_s3_bucket.web-bucket-development.id}"
     }
 
     environment_variable {
-      "name"  = "CLOUDFRONT_DISTRIBUTION"
-      "value" = "${aws_cloudfront_distribution.web-development.id}"
+      name  = "CLOUDFRONT_DISTRIBUTION"
+      value = "${aws_cloudfront_distribution.web-development.id}"
     }
 
     environment_variable {
-      "name"  = "WEBSITE_URL"
-      "value" = "${local.website_url_development}"
+      name  = "WEBSITE_URL"
+      value = "${local.website_url_development}"
     }
   }
 
